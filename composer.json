@@ -1,0 +1,22 @@
+{
+    "name": "sargilla/swagger",
+    "description": "Integrador de Swagger 3 a Laravel 5",
+    "keywords": ["laravel", "swagger", "documentation", "api"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "santiago argilla",
+            "email": "sargilla@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "zircote/swagger-php": "2.*",
+        "illuminate/support": "~5.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Sargilla\\Swagger": "src/"
+        }
+    }
+}
