@@ -88,10 +88,6 @@ class SwaggerController extends Controller
                 'exclude' => $excludeDirs
             ]);
 
-            $swagger->info->title = config('swagger.title');
-            $swagger->info->description = config('swagger.description');
-            $swagger->info->contact = config('swagger.email');
-
             $filename = $docDir . '/api-docs.json';
             file_put_contents($filename, $swagger);
         }
