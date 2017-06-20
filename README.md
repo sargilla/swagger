@@ -1,4 +1,4 @@
-# Swagger (Swagger integration for Laravel 5)
+# Swagger (Integrador de Swagger para Laravel 5)
 
 Este paquete integra [Swagger-php](https://github.com/zircote/swagger-php) y Swagger UI a Laravel 5.
 Cuando esta en modo debug, Swagger escaneará la carpeta app (o cualquier carpeta debajo de "app-dir" y se puede cambiar desde la configuración), genera un archivo json y lo pone en el directorio "doc-dir" (/docs).

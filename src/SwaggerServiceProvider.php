@@ -26,6 +26,7 @@ class SwaggerServiceProvider extends ServiceProvider {
         }
         $this->mergeConfigFrom(SWAGGER_PATH.'/config/swagger.php', 'swagger');
     }
+
     /**
      * Bootstrap the application events.
      *
@@ -33,20 +34,24 @@ class SwaggerServiceProvider extends ServiceProvider {
      */
     public function boot() {
 
-        $this->publishes([SWAGGER_PATH.'/config/swagger.php' => config_path('swagger.php')]);
+        $this->publishes([
+            SWAGGER_PATH.'/config/swagger.php' => config_path('swagger.php')
+        ], 'config');
 
-        $this->publishes([SWAGGER_PATH.'/public' => public_path('vendor/swagger')], 'public');
-
-        $this->loadViewsFrom(SWAGGER_PATH.'/views', 'swagger');
+        $this->publishes([
+            SWAGGER_PATH.'/public' => public_path('vendor/swagger')
+        ], 'public');
 
         $this->publishes([
             SWAGGER_PATH.'/views' => base_path('resources/views/vendor/swagger'),
         ], 'views');
 
+        $this->loadViewsFrom(SWAGGER_PATH.'/views', 'swagger');
+
         if (!$this->app->routesAreCached()) {
 
             Route::group(['namespace' => 'Sargilla\Swagger\Http\Controllers'], function ($router) { 
-                require SWAGGER_PATH.'/Http/routes.php';
+                require SWAGGER_PATH.'/routes/routes.php';
             });
         }
     }

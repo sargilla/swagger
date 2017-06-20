@@ -1,4 +1,6 @@
-<?php namespace Sargilla\Swagger\Http\Controllers;
+<?php 
+
+namespace Sargilla\Swagger\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -42,7 +44,7 @@ class SwaggerController extends Controller
         }
 
         //need the / at the end to avoid CORS errors on Homestead systems.
-        $response = response()->view('swaggervel::index', [
+        $response = response()->view('swagger::index', [
                 'urlToDocs' => url(config('swagger.doc-route')),
                 'requestHeaders' => config('swagger.requestHeaders'),
                 'clientId' => $request->input('client_id'),
@@ -63,6 +65,7 @@ class SwaggerController extends Controller
     private function regenerateDefinitions()
     {
         $dir = config('swagger.app-dir');
+
         if (is_array($dir)) {
             $appDir = [];
             foreach($dir as $d) {
@@ -85,6 +88,25 @@ class SwaggerController extends Controller
                 'exclude' => $excludeDirs
             ]);
 
+            $swagger->definitions = 
+            [
+                'Club'=>
+                    [
+                        'type'=>'object', 
+                        'properties' => 
+                            [
+                                'nombre' =>
+                                [
+                                    'type' => 'string',
+                                ],
+                                'historia' =>
+                                [
+                                    'type' => 'string',
+                                ]
+                            ]
+                    ]
+            ];
+            //dd($swagger);
             $filename = $docDir . '/api-docs.json';
             file_put_contents($filename, $swagger);
         }
