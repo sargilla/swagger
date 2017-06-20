@@ -1,11 +1,11 @@
 <?php
 
 Route::any(config('swagger.doc-route') . '/{page?}', [
-    'as' => 'swaggervel.definitions',
-    'uses' => 'SwaggervelController@definitions',
+    'as' => 'swagger.definitions',
+    'uses' => 'SwaggerController@definitions',
 ]);
 
 Route::get(config('swagger.api-docs-route'), [
     'as' => 'swagger.ui',
-    'uses' => 'SwaggervelController@ui',
+    'uses' => 'SwaggerController@ui',
 ]);
