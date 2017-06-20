@@ -88,25 +88,10 @@ class SwaggerController extends Controller
                 'exclude' => $excludeDirs
             ]);
 
-            $swagger->definitions = 
-            [
-                'Club'=>
-                    [
-                        'type'=>'object', 
-                        'properties' => 
-                            [
-                                'nombre' =>
-                                [
-                                    'type' => 'string',
-                                ],
-                                'historia' =>
-                                [
-                                    'type' => 'string',
-                                ]
-                            ]
-                    ]
-            ];
-            //dd($swagger);
+            $swagger->info->title = config('swagger.title');
+            $swagger->info->description = config('swagger.description');
+            $swagger->info->contact = config('swagger.email');
+
             $filename = $docDir . '/api-docs.json';
             file_put_contents($filename, $swagger);
         }
